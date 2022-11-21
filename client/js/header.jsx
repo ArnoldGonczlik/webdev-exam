@@ -10,6 +10,7 @@ function Header() {
     return  <div>
         <button onClick={handleClick} value={"/"}>Home</button>
         <button onClick={handleClick} value={"/menu"}>Menu</button>
+        <button onClick={handleClick} value={"/login"}>Login</button>
         <br/>
         <br/>
     </div>

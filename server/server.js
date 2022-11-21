@@ -1,9 +1,26 @@
 import express from "express";
 import * as path from "path";
 import dotenv from "dotenv";
+import bodyParser from "body-parser";
+import {UsersApi} from "./usersApi.js";
+import {MongoClient} from "mongodb";
 dotenv.config({ path: '../.env' });
 
 const app = express();
+
+app.use(bodyParser.json());
+
+const mongodburl = process.env.DB_CONNECTION;
+
+if(mongodburl){
+    const client = new MongoClient(mongodburl);
+
+    client
+        .connect()
+        .then((conn) => app.use("/api/users",
+            UsersApi(conn.db(process.env.MONGODB_DATABASE || "TheFantasticCaterers"))));
+
+}
 
 app.use(express.static("../client/dist"));
 
