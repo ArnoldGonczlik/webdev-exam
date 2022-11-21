@@ -1,0 +1,28 @@
+{
+  "name": "exam-arnoldgonczlik",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "build:client": "cd client && npm run build",
+    "build:server": "cd server && npm run build",
+    "build": "npm run build:client && npm run build:server",
+    "dev:client": "cd client && npm run dev",
+    "dev:server": "cd server && npm run dev",
+    "dev": "concurrently \"npm run dev:client\" \"npm run dev:server\"",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pg6301-fall2022/exam-ArnoldGonczlik.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "concurrently": "^7.4.0"
+  },
+  "bugs": {
+    "url": "https://github.com/pg6301-fall2022/exam-ArnoldGonczlik/issues"
+  },
+  "homepage": "https://github.com/pg6301-fall2022/exam-ArnoldGonczlik#readme"
+}
