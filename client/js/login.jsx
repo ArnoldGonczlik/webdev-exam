@@ -2,10 +2,8 @@ import Header from "./header.jsx";
 import {useEffect, useState} from "react";
 import {useNavigate} from "react-router-dom";
 
-function Login() {
+function Login({user, setUser}) {
     const [username, setUsername] = useState("");
-    const [activeuser, isActiveuser] = useState();
-    const [user, setUser] = useState({});
     const [loginOutput, setLoginOutput] = useState("");
     const navigate = useNavigate();
 
@@ -45,7 +43,7 @@ function Login() {
         }).then((res) => {
             return res.json();
         }).then((data) => {
-            setUser(data)
+            setUser(data[0])
             setTimeout(() => navigate("/"), 1000);
         });
     }
