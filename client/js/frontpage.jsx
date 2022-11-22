@@ -1,5 +1,4 @@
 import Header from "./header.jsx";
-import * as React from "react"
 
 export function Frontpage({user, setUser}) {
     return <div><Header user={user} setUser={setUser}/><h1>Welcome to the fantastic catering business!</h1>

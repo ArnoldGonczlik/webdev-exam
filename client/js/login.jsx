@@ -1,7 +1,6 @@
 import Header from "./header.jsx";
 import {useEffect, useState} from "react";
 import {useNavigate} from "react-router-dom";
-import * as React from "react"
 
 export function Login({user, setUser}) {
     const [username, setUsername] = useState("");
