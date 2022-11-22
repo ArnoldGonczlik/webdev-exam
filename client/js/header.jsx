@@ -1,6 +1,7 @@
 import {useNavigate} from "react-router-dom";
+import * as React from "react"
 
-function Header({user, setUser}) {
+export function Header({user, setUser}) {
     const navigate = useNavigate();
 
     function handleClick(e) {

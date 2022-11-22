@@ -9,7 +9,7 @@ import {useState} from "react";
 const element = document.getElementById("app");
 const root = createRoot(element);
 
-function Application() {
+export function Application() {
     const [user, setUser] = useState();
 
     return(

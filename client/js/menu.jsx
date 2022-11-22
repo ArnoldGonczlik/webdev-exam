@@ -1,8 +1,7 @@
 import {useEffect, useState} from "react";
-import "./menu.css";
 import Header from "./header.jsx"
 
-function Menu({user}) {
+export function Menu({user}) {
     const [dishes, setDishes] = useState([]);
     const [loading, setLoading] = useState("Loading...");
 

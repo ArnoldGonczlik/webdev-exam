@@ -4,7 +4,7 @@ import { act } from "react-dom/test-utils";
 import { Frontpage } from "../js/frontpage.jsx";
 import { MemoryRouter } from "react-router-dom";
 
-describe("client test suite", () => {
+describe("catering business tests", () => {
 
     it("Renders frontpage", () => {
         const element = document.createElement("div");
@@ -12,7 +12,12 @@ describe("client test suite", () => {
         const root = createRoot(element);
 
         act(() => {
-            root.render(<Frontpage/>);
+
+            root.render(
+                <MemoryRouter>
+                    <Frontpage/>
+                </MemoryRouter>
+            );
         });
 
         expect(element.querySelector("h1")?.innerHTML).toEqual("Welcome to the fantastic catering business!");
