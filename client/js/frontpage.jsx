@@ -1,3 +1,4 @@
+import * as React from "react"
 import Header from "./header.jsx";
 
 export function Frontpage({user, setUser}) {
