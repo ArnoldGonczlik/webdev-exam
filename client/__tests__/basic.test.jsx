@@ -3,6 +3,7 @@ import {createRoot} from "react-dom/client";
 import { act } from "react-dom/test-utils";
 import { Frontpage } from "../js/frontpage.jsx";
 import { MemoryRouter } from "react-router-dom";
+import Login from "../js/login.jsx";
 
 describe("catering business tests", () => {
 
@@ -23,4 +24,8 @@ describe("catering business tests", () => {
         expect(element.querySelector("h1")?.innerHTML).toEqual("Welcome to the fantastic catering business!");
         expect(element.innerHTML).toMatchSnapshot();
     });
+
+
+
+
 });

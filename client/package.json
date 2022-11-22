@@ -7,6 +7,7 @@
     "build": "parcel build html/index.html",
     "dev": "parcel watch html/index.html",
     "test": "jest",
+    "updateSnapshot": "jest --updateSnapshot",
     "verify": "jest --collectCoverage"
   },
   "keywords": [],

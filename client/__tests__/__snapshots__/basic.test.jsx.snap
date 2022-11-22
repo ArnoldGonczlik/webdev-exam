@@ -1,3 +1,3 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`catering business tests Renders frontpage 1`] = `"<div><div><button value="/">Home</button><button value="/menu">Menu</button><button value="/login">Login</button><button>Logout</button><br><br></div><h1>Welcome to the fantastic catering business!</h1><div>We specialize in the best kind of food!</div><div>Please use the navigation at the top to look at our food selection and more</div></div>"`;
+exports[`catering business tests Renders frontpage 1`] = `"<div><div><button value="/">Home</button><button value="/menu">Menu</button><button value="/login">Login</button><br><br></div><h1>Welcome to the fantastic catering business!</h1><div>We specialize in the best kind of food!</div><div>Please use the navigation at the top to look at our food selection and more</div></div>"`;
