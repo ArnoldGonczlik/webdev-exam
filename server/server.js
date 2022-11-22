@@ -3,6 +3,7 @@ import * as path from "path";
 import dotenv from "dotenv";
 import bodyParser from "body-parser";
 import {UsersApi} from "./usersApi.js";
+import {MenuApi} from "./menuApi.js";
 import {MongoClient} from "mongodb";
 dotenv.config({ path: '../.env' });
 
@@ -20,30 +21,13 @@ if(mongodburl){
         .then((conn) => app.use("/api/users",
             UsersApi(conn.db(process.env.MONGODB_DATABASE || "TheFantasticCaterers"))));
 
+    client
+        .connect()
+        .then((conn) => app.use("/api/menu",
+            MenuApi(conn.db(process.env.MONGODB_DATABASE || "TheFantasticCaterers"))));
 }
 
 app.use(express.static("../client/dist"));
-
-const testData = [
-    {
-        id: 1,
-        name: "Dish1",
-        price: 1337,
-        description: "A fantastic dish"
-    },
-    {
-        id: 2,
-        name: "Dish2",
-        price: 1338,
-        description: "An ok dish"
-    },
-    {
-        id: 3,
-        name: "Dish3",
-        price: 1339,
-        description: "A not so good dish"
-    }
-]
 
 app.use((req, res, next) => {
     if(req.method === "GET" && !req.path.startsWith("/api")){
@@ -51,14 +35,6 @@ app.use((req, res, next) => {
     }  else {
         next();
     }
-});
-
-app.get("/api/test", (req, res) => {
-    res.json({"test": "data", "because": "its cool"})
-});
-
-app.get("/api/dishes", (req, res) => {
-    res.json(testData)
 });
 
 const server = app.listen(process.env.PORT,
