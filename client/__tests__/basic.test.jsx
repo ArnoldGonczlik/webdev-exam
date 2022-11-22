@@ -22,6 +22,5 @@ describe("catering business tests", () => {
 
         expect(element.querySelector("h1")?.innerHTML).toEqual("Welcome to the fantastic catering business!");
         expect(element.innerHTML).toMatchSnapshot();
-
     });
 });

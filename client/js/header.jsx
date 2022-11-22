@@ -8,24 +8,55 @@ export function Header({user, setUser}) {
         navigate(e.target.value)
     }
 
+    function ifEditMenuDisplay() {
+        if(user !== false) {
+            if(typeof user !== 'undefined') {
+                if(user.permissionGroup === 2) {
+                    return <button onClick={handleClick} value={"/editmenu"}>Edit Menu</button>
+                }
+            }
+        }
+    }
+
     function logoutHandler() {
-        navigate("/");
-        setUser(null);
+        console.log(user)
+        if(user !== false) {
+            if(typeof user !== 'undefined') {
+                navigate("/");
+                setUser(false);
+            }
+        }
     }
 
     function welcome() {
-        if(typeof user !== 'undefined') {
-            if(user.permissionGroup === 1) {
-                return <div>Welcome!</div>
+        if(user !== false) {
+            if(typeof user !== 'undefined') {
+                return <div style={{display: 'inline', marginLeft: "10px"}}>Hello, {user.username}!</div>
             }
+        }
+    }
+    function ifDisplayLogout() {
+        if(user !== false) {
+            if(typeof user !== 'undefined') {
+                if(user.permissionGroup === 1 || user.permissionGroup === 2) {
+                    return <button onClick={logoutHandler}>Logout</button>
+                }
+            }
+        }
+    }
+
+    function ifDisplayLogin() {
+        if (user === false || typeof user === 'undefined') {
+            return <button onClick={handleClick} value={"/login"}>Login</button>
         }
     }
 
     return  <div>
         <button onClick={handleClick} value={"/"}>Home</button>
         <button onClick={handleClick} value={"/menu"}>Menu</button>
-        <button onClick={handleClick} value={"/login"}>Login</button>
-        <button onClick={logoutHandler}>Logout</button>
+        {ifDisplayLogin()}
+        {ifDisplayLogout()}
+        {ifEditMenuDisplay()}
         {welcome()}
         <br/>
         <br/>

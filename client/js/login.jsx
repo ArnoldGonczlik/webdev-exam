@@ -75,7 +75,7 @@ export function Login({user, setUser}) {
     }
 
     return <div>
-        <Header />
+        <Header user={user} setUser={setUser}/>
         <h2>Login</h2>
         <form onSubmit={handleSubmit}>
             <div>Username: <input type="text" onChange={(e) => setUsername(e.target.value)}/></div>
