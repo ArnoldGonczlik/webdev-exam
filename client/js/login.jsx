@@ -45,6 +45,7 @@ export function Login({user, setUser}) {
             return res.json();
         }).then((data) => {
             setUser(data[0])
+            localStorage.setItem('user', data[0].username);
             setTimeout(() => navigate("/"), 1000);
         });
     }

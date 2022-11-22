@@ -24,6 +24,8 @@ export function Header({user, setUser}) {
             if(typeof user !== 'undefined') {
                 navigate("/");
                 setUser(false);
+                localStorage.clear();
+                window.location.reload();
             }
         }
     }

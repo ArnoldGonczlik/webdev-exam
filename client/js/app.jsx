@@ -16,6 +16,25 @@ export function Application() {
     const [user, setUser] = useState(false);
     const [clickedItem, setClickedItem] = useState(false);
 
+    const userCookie = localStorage.getItem('user');
+    if (userCookie !== null) {
+        fetch(`/api/users/getuser`, {
+            method: "post",
+            headers: {
+                "Accept": "application/json",
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                username: userCookie
+            }),
+        }).then((res) => {
+            return res.json();
+        }).then((data) => {
+            setUser(data[0])
+        });
+    }
+
+
     return(
         <BrowserRouter>
             <Routes>
