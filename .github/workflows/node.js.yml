@@ -33,4 +33,4 @@ jobs:
       with:
         working-directory: server
       env:
-        MONGODB_URL: ${{ secrets.MONGODB_URL }}
+        DB_CONNECTION: ${{ secrets.DB_CONNECTION }}
