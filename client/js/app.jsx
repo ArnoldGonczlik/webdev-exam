@@ -74,8 +74,8 @@ export function Application() {
           element={<Additem user={user} setUser={setUser} />}
         />
         <Route
-            path={"/vieworders"}
-            element={<Vieworders user={user} setUser={setUser} />}
+          path={"/vieworders"}
+          element={<Vieworders user={user} setUser={setUser} />}
         />
         <Route path="*" element={<Pagenotfound />} />
       </Routes>

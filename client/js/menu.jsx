@@ -60,7 +60,13 @@ export function Menu({ user, setUser }) {
           </div>
         ))}
       </div>
-      <Cart cart={cart} cartTotal={cartTotal} user={user} setCart={setCart} setCartTotal={setCartTotal} />
+      <Cart
+        cart={cart}
+        cartTotal={cartTotal}
+        user={user}
+        setCart={setCart}
+        setCartTotal={setCartTotal}
+      />
     </div>
   );
 }

@@ -13,9 +13,9 @@ export function Header({ user, setUser }) {
       if (typeof user !== "undefined") {
         if (user.permissionGroup === 2) {
           return (
-              <button onClick={handleClick} value={"/vieworders"}>
-                View Orders
-              </button>
+            <button onClick={handleClick} value={"/vieworders"}>
+              View Orders
+            </button>
           );
         }
       }
