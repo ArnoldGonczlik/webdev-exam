@@ -59,37 +59,4 @@ describe("Users api tests", () => {
 
         expect(response.body[0].permissionGroup).toEqual(1);
     });
-
-    it("Add item, then delete", async () => {
-        const agent = request.agent(app);
-        await agent
-            .post("/api/menu/additem")
-            .send({name: "Kebab", description: "Best food", price: 100});
-
-        const response = await agent
-            .delete("/api/menu/deleteitem")
-            .send({id: 1});
-
-        console.log(response)
-
-        expect(response.body.deletedCount).toEqual(1);
-    });
-
-    it("Add item, then edit", async () => {
-        //I have to make sure all items are deleted from db, as when i run all tests i think they run too quick, so
-        //things are not properly deleted
-        await mongoClient.connect();
-        const database = mongoClient.db("unit_tests");
-        await database.collection("Products").deleteMany({});
-        const agent = request.agent(app);
-        await agent
-            .post("/api/menu/additem")
-            .send({name: "Kebab", description: "Best food", price: 100});
-
-        const response = await agent
-            .put("/api/menu/edititem")
-            .send({id: 1, name: "Keb", description: "ab", price: 99});
-
-        expect(response.body.modifiedCount).toEqual(1);
-    });
 });
