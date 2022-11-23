@@ -14,7 +14,9 @@
     "test": "npm run test:client && npm run test:server",
     "ci:client": "cd client && npm ci",
     "ci:server": "cd server && npm ci",
-    "ci": "npm run ci:client && npm run ci:server"
+    "ci": "npm run ci:client && npm run ci:server",
+    "start": "npm run build && cd server && npm run start",
+    "first-time": "npm install && cd client && npm install && cd ../server && npm install && cd.. && npm run start"
   },
   "repository": {
     "type": "git",
