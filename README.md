@@ -1,6 +1,6 @@
 [![Node.js CI](https://github.com/pg6301-fall2022/exam-ArnoldGonczlik/actions/workflows/node.js.yml/badge.svg)](https://github.com/pg6301-fall2022/exam-ArnoldGonczlik/actions/workflows/node.js.yml)
 
-# Exam - ArnoldGonczlik
+# Exam - PG6301
 
 - To run my application simply type:
   - npm run first-time
@@ -27,20 +27,21 @@ and it is able to showcase a great deal of what I have learned during this cours
 jest and testing better which you can see on my coverage reports. Testing the api's was quite do-able but for some reason
 I find testing react code with all the components extremely difficult.
 
-- My endpoints:
-  - /api/users
-    - /checkusername
-    - /getuser
-    - /createuser
-  - /api/menu
-    - /allitems
-    - /namecontains
-    - /additem
-    - /deleteitem
-    - /edititem
-  - /api/orders
-    - /placeorder
-    - /getorders
+My endpoints:
+
+- /api/users
+  - /checkusername
+  - /getuser
+  - /createuser
+- /api/menu
+  - /allitems
+  - /namecontains
+  - /additem
+  - /deleteitem
+  - /edititem
+- /api/orders
+  - /placeorder
+  - /getorders
 
 I have not been able to do the entire task. I have no options to sort the dishes, or any allergens for each dish. Besides that I feel like I gain
 points on how well I have separated admin/normal users, and where and how functionality is displayed.
