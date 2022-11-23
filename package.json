@@ -10,7 +10,8 @@
     "dev:server": "cd server && npm run dev",
     "dev": "concurrently \"npm run dev:client\" \"npm run dev:server\"",
     "test:client": "cd client && npm run test",
-    "test": "npm run test:client",
+    "test:server": "cd server && npm run test",
+    "test": "npm run test:client && npm run test:server",
     "ci:client": "cd client && npm ci",
     "ci:server": "cd server && npm ci",
     "ci": "npm run ci:client && npm run ci:server"
