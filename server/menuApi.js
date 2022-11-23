@@ -20,7 +20,7 @@ export function MenuApi(db) {
         //Adds regex to make search case-insensitive
         query.name = {"$regex": (name.toLowerCase()), "$options": 'i'};
         try {
-            const result = await db.collection("Products").find(query).map(({_id, name, description, price}) => ({_id, name, description, price})).toArray();
+            const result = await db.collection("Products").find(query).map(({id, name, description, price}) => ({id, name, description, price})).toArray();
             res.json(result);
         } catch (e) {
             console.log(e)
@@ -47,11 +47,8 @@ export function MenuApi(db) {
     api.delete("/deleteitem", async(req, res) => {
         const {id} = req.body;
 
-        console.log(id)
-
         try {
             const result = await db.collection("Products").deleteOne({"id": parseInt(id)});
-            console.log(result)
             res.json(result);
         } catch (e) {
             console.log(e)
@@ -64,7 +61,6 @@ export function MenuApi(db) {
         try {
             const result = await db.collection("Products").updateOne({"id": id}, {"$set": {"name": name, "description": description, "price": price}});
             res.json(result);
-            console.log(result)
         } catch (e) {
             console.log(e)
         }

@@ -11,8 +11,12 @@ export function UsersApi(db) {
             query.username = username.toLowerCase();
         }
 
-        const result = await db.collection("Users").find(query).map(({username}) => ({username})).toArray();
-        res.json(result);
+        try {
+            const result = await db.collection("Users").find(query).map(({username}) => ({username})).toArray();
+            res.json(result);
+        } catch (e) {
+            console.log(e)
+        }
     });
 
     api.post("/getuser", async(req, res) => {
@@ -23,8 +27,13 @@ export function UsersApi(db) {
             query.username = username.toLowerCase();
         }
 
-        const result = await db.collection("Users").find(query).map(({username, permissionGroup}) => ({username, permissionGroup})).toArray();
-        res.json(result);
+        try {
+            const result = await db.collection("Users").find(query).map(({username, permissionGroup}) => ({username, permissionGroup})).toArray();
+            res.json(result);
+        } catch (e) {
+            console.log(e)
+        }
+
     });
 
     api.post("/createuser", async(req, res) => {
@@ -35,10 +44,14 @@ export function UsersApi(db) {
             query.username = username.toLowerCase();
         }
 
-        db.collection("Users").insertOne({"username": query.username, "permissionGroup": 1});
-        const result = await db.collection("Users").find(query).map(({username, permissionGroup}) => ({username, permissionGroup})).toArray();
+        try {
+            db.collection("Users").insertOne({"username": query.username, "permissionGroup": 1});
+            const result = await db.collection("Users").find(query).map(({username, permissionGroup}) => ({username, permissionGroup})).toArray();
 
-        res.json(result);
+            res.json(result);
+        } catch (e) {
+            console.log(e)
+        }
     });
 
     return api;
