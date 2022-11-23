@@ -76,7 +76,7 @@ export function Login({ user, setUser }) {
         return res.json();
       })
       .then((data) => {
-        setUser(data);
+        setUser(data[0]);
         setTimeout(() => navigate("/"), 1000);
       });
   };
