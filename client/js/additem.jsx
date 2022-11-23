@@ -2,22 +2,21 @@ import * as React from "react";
 import { useState } from "react";
 import Header from "./header.jsx";
 
-export function Edititem({ clickedItem, user, setUser }) {
-  const [name, setName] = useState(clickedItem.name);
-  const [description, setDescription] = useState(clickedItem.description);
-  const [price, setPrice] = useState(clickedItem.price);
-  const [itemEditResult, setItemEditResult] = useState("");
+export function Additem({ user, setUser }) {
+  const [name, setName] = useState("");
+  const [description, setDescription] = useState("");
+  const [price, setPrice] = useState("");
+  const [itemAddResult, setItemAddResult] = useState("");
 
   function handleSubmit(e) {
     e.preventDefault();
-    fetch(`/api/menu/edititem`, {
-      method: "put",
+    fetch(`/api/menu/additem`, {
+      method: "post",
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        id: clickedItem.id,
         name: name,
         description: description,
         price: price,
@@ -27,23 +26,27 @@ export function Edititem({ clickedItem, user, setUser }) {
         return res.json();
       })
       .then((data) => {
-        if (data.modifiedCount === 1) {
-          setItemEditResult(`Successfully edited ${clickedItem.name}`);
+        setName("");
+        setDescription("");
+        setPrice("");
+        if (data.acknowledged) {
+          setItemAddResult(`Successfully added ${name}`);
           setTimeout(() => {
-            setItemEditResult("");
+            setItemAddResult("");
           }, 1000);
         } else {
-          setItemEditResult("Something went wrong, try again");
+          setItemAddResult("Something went wrong, try again");
         }
       });
   }
 
   return (
     <div>
-      {user && user.permissionGroup === 2 && clickedItem && (
+      {user && user.permissionGroup === 2 && (
         <div>
+          {" "}
           <Header user={user} setUser={setUser} />
-          <div>You're now editing {clickedItem.name}</div>
+          <div>Add your item:</div>
           <form onSubmit={handleSubmit}>
             <div>
               Name:{" "}
@@ -69,13 +72,13 @@ export function Edititem({ clickedItem, user, setUser }) {
                 value={price}
               />
             </div>
-            <input type={"submit"} value={"Update item"} />
+            <input type={"submit"} value={"Add item"} />
           </form>
-          <div>{itemEditResult}</div>
+          <div>{itemAddResult}</div>
         </div>
       )}
     </div>
   );
 }
 
-export default Edititem;
+export default Additem;

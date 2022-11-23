@@ -8,7 +8,8 @@
     "dev": "parcel watch html/index.html",
     "test": "jest",
     "updateSnapshot": "jest --updateSnapshot",
-    "verify": "jest --collectCoverage"
+    "verify": "jest --collectCoverage",
+    "format": "prettier --write **/*.{js,jsx,ts,tsx}"
   },
   "keywords": [],
   "author": "",
@@ -21,6 +22,7 @@
     "jest-environment-jsdom": "^29.2.2",
     "jsdom": "^20.0.1",
     "parcel": "^2.7.0",
+    "prettier": "^2.7.1",
     "process": "^0.11.10"
   },
   "dependencies": {

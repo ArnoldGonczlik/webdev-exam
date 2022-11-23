@@ -1,3 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`catering business tests Renders frontpage 1`] = `"<div><div><button value="/">Home</button><button value="/menu">Menu</button><button value="/login">Login</button><br><br></div><h1>Welcome to the fantastic catering business!</h1><div>We specialize in the best kind of food!</div><div>Please use the navigation at the top to look at our food selection and more</div></div>"`;
+
+exports[`catering business tests Renders frontpage with user logged in 1`] = `"<div><button value="/">Home</button><button value="/menu">Menu</button><button>Logout</button><button value="/editmenu">Edit Menu</button><div style="display: inline; margin-left: 10px;">Hello, bob!</div><br><br></div>"`;
+
+exports[`catering business tests Tests 404 page 1`] = `"<h1>404 page not found</h1>"`;
+
+exports[`catering business tests Tests cart 1`] = `"<div><h4>Your cart:</h4><div><div><div>Kebab</div><div>100 kr</div></div><div><div>Burger</div><div>50 kr</div></div><div><div>Fries</div><div>25 kr</div></div></div><div>Your total: 175</div></div>"`;
+
+exports[`catering business tests Tests header when user is set 1`] = `"<div><button value="/">Home</button><button value="/menu">Menu</button><button>Logout</button><div style="display: inline; margin-left: 10px;">Hello, bob!</div><br><br></div>"`;

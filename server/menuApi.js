@@ -4,51 +4,67 @@ export function MenuApi(db) {
     const api = express.Router();
 
     api.get("/allitems", async(req, res) => {
-        const result = await db.collection("Products").find({}).toArray();
-        res.json(result);
+        try {
+            const result = await db.collection("Products").find({}).toArray();
+            res.json(result);
+        } catch (e) {
+            console.log(e)
+        }
     });
 
+    //did not make use of this endpoint but thought to leave it in
     api.post("/namecontains", async(req, res) => {
         const {name} = req.body;
         const query = {};
 
         //Adds regex to make search case-insensitive
         query.name = {"$regex": (name.toLowerCase()), "$options": 'i'};
-
-        const result = await db.collection("Products").find(query).map(({_id, name, description, price}) => ({_id, name, description, price})).toArray();
-        res.json(result);
+        try {
+            const result = await db.collection("Products").find(query).map(({_id, name, description, price}) => ({_id, name, description, price})).toArray();
+            res.json(result);
+        } catch (e) {
+            console.log(e)
+        }
     });
 
     api.post("/additem", async(req, res) => {
         const {name, description, price} = req.body;
 
-        const itemList = []
-        const itemjson = await db.collection("Products").find({"name": name}).map(({name}) => ({name})).toArray()
-
-        itemjson.map((item) => {
-            itemList.push(item.name)
-        })
-
-        if(itemList.includes(name)) {
-            res.sendStatus(406)
-            return;
+        //first get current maxint of collection to then add item with one higher id
+        try {
+            const maxIntObject = await db.collection("Products").find().sort({id:-1}).limit(1).map(({id}) => ({id})).toArray();
+            const maxInt = maxIntObject[0].id;
+            const result = await db.collection("Products").insertOne({"id": maxInt + 1, "name": name, "description": description, "price": price});
+            res.json(result);
+        } catch (e) {
+            console.log(e)
         }
-
-        db.collection("Products").insertOne({"name": name, "description": description, "price": price});
-
-        res.sendStatus(200);
     });
 
-    api.post("/deleteitem", async(req, res) => {
-        const {name} = req.body;
+    api.delete("/deleteitem", async(req, res) => {
+        const {id} = req.body;
 
-        const query = {};
-        query.name = {"$regex": (name.toLowerCase()), "$options": '^i$'}
+        console.log(id)
 
-        const result = await db.collection("Products").deleteOne({"name": query.name});
+        try {
+            const result = await db.collection("Products").deleteOne({"id": parseInt(id)});
+            console.log(result)
+            res.json(result);
+        } catch (e) {
+            console.log(e)
+        }
+    });
 
-        res.json(result);
-        console.log(result)
+    api.put("/edititem", async(req, res) => {
+        const {id, name, description, price} = req.body;
+
+        try {
+            const result = await db.collection("Products").updateOne({"id": id}, {"$set": {"name": name, "description": description, "price": price}});
+            res.json(result);
+            console.log(result)
+        } catch (e) {
+            console.log(e)
+        }
     });
 
     return api;
