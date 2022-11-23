@@ -47,8 +47,5 @@
       "!coverage/**",
       "!dist/**"
     ]
-  },
-  "alias": {
-        "react/jsx-runtime": "react/jsx-runtime.js"
   }
 }
