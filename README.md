@@ -44,3 +44,4 @@ I have not been able to do the entire task. I have yet to add functionality to p
 for the admins to view them. I also have no options to sort the dishes. Besides that I feel like i gain
 points on how well I have separated admin/normal users, and where and how functionality is displayed.
 It is intended that admins cannot place orders.
+
