@@ -33,7 +33,10 @@ export function MenuApi(db) {
         //first get current maxint of collection to then add item with one higher id
         try {
             const maxIntObject = await db.collection("Products").find().sort({id:-1}).limit(1).map(({id}) => ({id})).toArray();
-            const maxInt = maxIntObject[0].id;
+            let maxInt = 0;
+            if (maxIntObject.length > 0) {
+                maxInt = maxIntObject[0].id;
+            }
             const result = await db.collection("Products").insertOne({"id": maxInt + 1, "name": name, "description": description, "price": price});
             res.json(result);
         } catch (e) {

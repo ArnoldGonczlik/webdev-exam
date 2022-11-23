@@ -12,8 +12,7 @@ app.use(bodyParser.json());
 let mongoClient;
 
 beforeAll(async () => {
-    dotenv.config();
-    mongoClient = new MongoClient(process.env.MONGODB_URL);
+    mongoClient = new MongoClient(process.env.DB_CONNECTION);
     await mongoClient.connect();
     const database = mongoClient.db("unit_tests");
     await database.collection("Products").deleteMany({});
@@ -25,11 +24,20 @@ afterAll(() => {
     mongoClient.close();
 });
 
-describe("movies api test suite", () => {
-    it("does something", async () => {
+describe("Menu api tests", () => {
+    it("Get all movies", async () => {
         const agent = request.agent(app);
         const response = await agent
-            .get("/api/movies");
+            .get("/api/menu/allitems");
+
+        expect(response.status).toEqual(200);
+    });
+
+    it("Add one item", async () => {
+        const agent = request.agent(app);
+        const response = await agent
+            .post("/api/menu/additem")
+            .send({year: 2022, country: "Norway" });
 
         expect(response.status).toEqual(200);
     });
