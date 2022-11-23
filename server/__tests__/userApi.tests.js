@@ -1,7 +1,7 @@
 import express from "express";
 import request from "supertest";
 import bodyParser from "body-parser";
-import { MenuApi } from "../menuApi.js";
+import { UsersApi } from "../usersApi.js";
 import { MongoClient } from "mongodb";
 import dotenv from "dotenv";
 dotenv.config({ path: '../.env' });
@@ -17,42 +17,47 @@ beforeAll(async () => {
     const database = mongoClient.db("unit_tests");
     await database.collection("Products").deleteMany({});
     await database.collection("Users").deleteMany({});
-    app.use("/api/menu", MenuApi(database));
+    app.use("/api/users", UsersApi(database));
 });
 
 afterAll(() => {
     mongoClient.close();
 });
 
-describe("Menu api tests", () => {
-    it("Get all movies", async () => {
+describe("Users api tests", () => {
+    it("Create user", async () => {
         const agent = request.agent(app);
         const response = await agent
-            .get("/api/menu/allitems");
+            .post("/api/users/createuser")
+            .send({username: "test-user"});
 
-        expect(response.status).toEqual(200);
+        expect(response.body[0].username).toEqual("test-user");
     });
 
-    it("Add one item", async () => {
-        const agent = request.agent(app);
-        const response = await agent
-            .post("/api/menu/additem")
-            .send({name: "Kebab", description: "Best food", price: 100});
-
-        expect(response.status).toEqual(200);
-    });
-
-    it("Add item, then search for it", async () => {
+    it("Create user, then check if username exists", async () => {
         const agent = request.agent(app);
         await agent
-            .post("/api/menu/additem")
-            .send({name: "Kebab", description: "Best food", price: 100});
+            .post("/api/users/createuser")
+            .send({username: "test-user"});
 
         const response = await agent
-            .post("/api/menu/namecontains")
-            .send({name: "bab"});
+            .post("/api/users/checkusername")
+            .send({username: "test-user"});
 
-        expect(response.body[0].name).toEqual("Kebab");
+        expect(response.body[0].username).toEqual("test-user");
+    });
+
+    it("Create user, then check permission group", async () => {
+        const agent = request.agent(app);
+        await agent
+            .post("/api/users/createuser")
+            .send({username: "test-user"});
+
+        const response = await agent
+            .post("/api/users/getuser")
+            .send({username: "test-user"});
+
+        expect(response.body[0].permissionGroup).toEqual(1);
     });
 
     it("Add item, then delete", async () => {

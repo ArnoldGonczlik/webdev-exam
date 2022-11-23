@@ -10,7 +10,6 @@ export function UsersApi(db) {
         if(username !== 'undefined') {
             query.username = username.toLowerCase();
         }
-
         try {
             const result = await db.collection("Users").find(query).map(({username}) => ({username})).toArray();
             res.json(result);
