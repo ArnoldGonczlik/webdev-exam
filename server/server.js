@@ -19,12 +19,12 @@ if(mongodburl){
     client
         .connect()
         .then((conn) => app.use("/api/users",
-            UsersApi(conn.db(process.env.MONGODB_DATABASE || "TheFantasticCaterers"))));
+            UsersApi(conn.db(process.env.DB_NAME || "TheFantasticCaterers"))));
 
     client
         .connect()
         .then((conn) => app.use("/api/menu",
-            MenuApi(conn.db(process.env.MONGODB_DATABASE || "TheFantasticCaterers"))));
+            MenuApi(conn.db(process.env.DB_NAME || "TheFantasticCaterers"))));
 }
 
 app.use(express.static("../client/dist"));

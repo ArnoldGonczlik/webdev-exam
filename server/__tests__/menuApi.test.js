@@ -65,8 +65,6 @@ describe("Menu api tests", () => {
             .delete("/api/menu/deleteitem")
             .send({id: 1});
 
-        console.log(response)
-
         expect(response.body.deletedCount).toEqual(1);
     });
 
