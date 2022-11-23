@@ -4,6 +4,7 @@ import dotenv from "dotenv";
 import bodyParser from "body-parser";
 import {UsersApi} from "./usersApi.js";
 import {MenuApi} from "./menuApi.js";
+import {OrdersApi} from "./ordersApi.js";
 import {MongoClient} from "mongodb";
 dotenv.config({ path: '../.env' });
 
@@ -25,6 +26,11 @@ if(mongodburl){
         .connect()
         .then((conn) => app.use("/api/menu",
             MenuApi(conn.db(process.env.DB_NAME || "TheFantasticCaterers"))));
+
+    client
+        .connect()
+        .then((conn) => app.use("/api/orders",
+            OrdersApi(conn.db(process.env.DB_NAME || "TheFantasticCaterers"))));
 }
 
 app.use(express.static("../client/dist"));

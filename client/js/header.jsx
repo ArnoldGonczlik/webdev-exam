@@ -8,6 +8,20 @@ export function Header({ user, setUser }) {
     navigate(e.target.value);
   }
 
+  function ifViewOrdersDisplay() {
+    if (user !== false) {
+      if (typeof user !== "undefined") {
+        if (user.permissionGroup === 2) {
+          return (
+              <button onClick={handleClick} value={"/vieworders"}>
+                View Orders
+              </button>
+          );
+        }
+      }
+    }
+  }
+
   function ifEditMenuDisplay() {
     if (user !== false) {
       if (typeof user !== "undefined") {
@@ -75,6 +89,7 @@ export function Header({ user, setUser }) {
       {ifDisplayLogin()}
       {ifDisplayLogout()}
       {ifEditMenuDisplay()}
+      {ifViewOrdersDisplay()}
       {welcome()}
       <br />
       <br />

@@ -9,6 +9,7 @@ import { useState } from "react";
 import Pagenotfound from "./pagenotfound.jsx";
 import Edititem from "./edititem.jsx";
 import Additem from "./additem.jsx";
+import Vieworders from "./vieworders.jsx";
 
 const element = document.getElementById("app");
 const root = createRoot(element);
@@ -71,6 +72,10 @@ export function Application() {
         <Route
           path={"/additem"}
           element={<Additem user={user} setUser={setUser} />}
+        />
+        <Route
+            path={"/vieworders"}
+            element={<Vieworders user={user} setUser={setUser} />}
         />
         <Route path="*" element={<Pagenotfound />} />
       </Routes>
