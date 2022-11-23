@@ -28,3 +28,9 @@ jobs:
       uses: ArtiomTr/jest-coverage-report-action@v2.1.2
       with:
         working-directory: client
+    - name: Collect coverage for server
+      uses: ArtiomTr/jest-coverage-report-action@v2.1.2
+      with:
+        working-directory: server
+      env:
+        MONGODB_URL: ${{ secrets.MONGODB_URL }}
