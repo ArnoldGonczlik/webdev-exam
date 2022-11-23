@@ -46,5 +46,5 @@ jobs:
         with:
           app-name: 'thefantasticcaterers'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_B9A1182D1A3548F2AA153BD463F0D712 }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_093EC627FEA74A4799849AC2EF1B8460 }}
           package: .
